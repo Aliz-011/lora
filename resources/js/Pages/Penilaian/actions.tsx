@@ -1,6 +1,6 @@
 "use client";
 
-import { Edit, MoreHorizontal, Trash } from "lucide-react";
+import { Edit, MoreHorizontal, Plus, Trash } from "lucide-react";
 
 import { Button } from "@/Components/ui/button";
 import {
@@ -28,8 +28,17 @@ export const Actions = ({ edit_url, id }: Props) => {
                 <DropdownMenuContent align="end">
                     <DropdownMenuItem className="cursor-pointer" asChild>
                         <Link href={edit_url}>
-                            <Edit className="size-4 mr-2" />
-                            Edit
+                            {edit_url.includes("create") ? (
+                                <>
+                                    <Plus className="size-4 mr-2" />
+                                    Create
+                                </>
+                            ) : (
+                                <>
+                                    <Edit className="size-4 mr-2" />
+                                    Edit
+                                </>
+                            )}
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="cursor-pointer" asChild>

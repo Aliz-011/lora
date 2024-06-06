@@ -57,7 +57,7 @@ const KriteriaForm = ({ defaultValues, id }: Props) => {
                         forceFormData: true,
                     };
             } else {
-                router.post("/kriterias", values),
+                router.post("/kriterias", { ...values }),
                     {
                         onSuccess: () => toast.success("Kriteria created!"),
                         forceFormData: true,

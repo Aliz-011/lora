@@ -1,26 +1,43 @@
 import { Plus } from "lucide-react";
-import { Head, Link, usePage } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Button } from "@/Components/ui/button";
 import { DataTable } from "@/Components/data-table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 
-import {
-    Alternatif,
-    Kriteria,
-    PageProps,
-    PaginatedData,
-    Penilaian,
-} from "@/types";
+import { Alternatif, PageProps, Penilaian } from "@/types";
 import { columns } from "./columns";
 
-const Home = ({ create_url }: PageProps<{ create_url: string }>) => {
-    const { penilaians } = usePage<{
-        penilaians: PaginatedData<
-            Penilaian & { kriteria: Kriteria; alternatif: Alternatif }
-        >;
-    }>().props;
+const Home = ({
+    create_url,
+    penilaians,
+    alternatifs,
+}: PageProps<{
+    create_url: string;
+    penilaians: Penilaian[];
+    alternatifs: (Alternatif & { sum: number })[];
+}>) => {
+    const newAlternatifs = alternatifs.map((alt) => {
+        if (alt.sum > 0) {
+            const penilaian = penilaians.find(
+                (p) => p.alternatif_id === alt.id
+            );
+            return {
+                id: alt.id,
+                nama: alt.nama,
+                edit_url: penilaian
+                    ? route("penilaians.edit", penilaian.id)
+                    : "",
+            };
+        } else {
+            return {
+                id: alt.id,
+                nama: alt.nama,
+                edit_url: route("penilaians.create"),
+            };
+        }
+    });
 
     return (
         <AuthenticatedLayout>
@@ -41,9 +58,9 @@ const Home = ({ create_url }: PageProps<{ create_url: string }>) => {
                     </CardHeader>
                     <CardContent>
                         <DataTable
-                            data={penilaians.data}
+                            data={newAlternatifs}
                             columns={columns}
-                            filterKey="nilai"
+                            filterKey="nama"
                         />
                     </CardContent>
                 </Card>

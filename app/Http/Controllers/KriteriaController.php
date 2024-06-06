@@ -70,9 +70,9 @@ class KriteriaController extends Controller
      */
     public function update(Request $request, Kriteria $kriteria)
     {
-        Kriteria::findOrFail($kriteria->id);
+        Kriteria::find($kriteria);
         $kriteria->keterangan = $request->keterangan;
-        $kriteria->kode_keterangan = $request->kode_keterangan;
+        $kriteria->kode_kriteria = $request->kode_kriteria;
         $kriteria->jenis = $request->jenis;
         $kriteria->bobot = $request->bobot;
         $kriteria->save();

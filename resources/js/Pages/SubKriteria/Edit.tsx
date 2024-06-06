@@ -4,9 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import SubKriteriaForm from "./sub-kriteria-form";
 
-import { Kriteria, PageProps } from "@/types";
+import { Kriteria, PageProps, SubKriteria } from "@/types";
 
-const Edit = ({ kriterias }: PageProps<{ kriterias: Kriteria[] }>) => {
+const Edit = ({
+    kriterias,
+    data,
+}: PageProps<{ kriterias: Kriteria[]; data: SubKriteria }>) => {
     const formattedKriterias = kriterias.map((kriteria) => ({
         value: kriteria.id,
         label: `${kriteria.kode_kriteria} ${kriteria.keterangan}`,
@@ -24,7 +27,11 @@ const Edit = ({ kriterias }: PageProps<{ kriterias: Kriteria[] }>) => {
                         <CardTitle>Edit</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <SubKriteriaForm options={formattedKriterias} />
+                        <SubKriteriaForm
+                            id={data.id}
+                            options={formattedKriterias}
+                            defaultValues={data}
+                        />
                     </CardContent>
                 </Card>
             </div>

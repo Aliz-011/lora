@@ -1,20 +1,13 @@
 import { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "@/Components/ui/checkbox";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/Components/ui/tooltip";
-import { DataTableColumnHeader } from "@/Components/data-table-column-header";
 import { Actions } from "./actions";
 
-import { Alternatif, Kriteria, Penilaian } from "@/types";
+import { Alternatif } from "@/types";
 
-type ResponseType = Penilaian & { kriteria: Kriteria; alternatif: Alternatif };
+// type ResponseType = Penilaian & { kriteria: Kriteria; alternatif: Alternatif };
 
-export const columns: ColumnDef<ResponseType>[] = [
+export const columns: ColumnDef<Alternatif>[] = [
     {
         id: "select",
         header: ({ table }) => (
@@ -40,32 +33,26 @@ export const columns: ColumnDef<ResponseType>[] = [
         enableHiding: false,
     },
     {
-        accessorKey: "nilai",
-        header: ({ column }) => (
-            <DataTableColumnHeader column={column} title="Nilai" />
-        ),
-    },
-    {
-        accessorKey: "alternatif",
+        accessorKey: "nama",
         header: "Alternatif",
-        cell: ({ row }) => <div>{row.original.alternatif.nama}</div>,
+        cell: ({ row }) => <div>{row.original.nama}</div>,
     },
-    {
-        accessorKey: "kriteria",
-        header: "Kriteria",
-        cell: ({ row }) => (
-            <TooltipProvider delayDuration={50}>
-                <Tooltip>
-                    <TooltipTrigger>
-                        <p>{row.original.kriteria.kode_kriteria}</p>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        <p>{row.original.kriteria.keterangan}</p>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
-        ),
-    },
+    // {
+    //     accessorKey: "kriteria",
+    //     header: "Kriteria",
+    //     cell: ({ row }) => (
+    //         <TooltipProvider delayDuration={50}>
+    //             <Tooltip>
+    //                 <TooltipTrigger>
+    //                     <p>{row.original.kriteria.kode_kriteria}</p>
+    //                 </TooltipTrigger>
+    //                 <TooltipContent>
+    //                     <p>{row.original.kriteria.keterangan}</p>
+    //                 </TooltipContent>
+    //             </Tooltip>
+    //         </TooltipProvider>
+    //     ),
+    // },
     {
         id: "actions",
         cell: ({ row }) => (

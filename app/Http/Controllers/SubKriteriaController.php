@@ -65,33 +65,38 @@ class SubKriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SubKriteria $subKriteria)
+    public function edit($subKriteria)
     {
+        $data = SubKriteria::find($subKriteria);
         return Inertia::render('SubKriteria/Edit', [
-            'kriterias' => Kriteria::all()
+            'kriterias' => Kriteria::all(),
+            'data' => $data,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SubKriteria $subKriteria)
+    public function update($subKriteria, Request $request)
     {
-        SubKriteria::findOrFail($subKriteria->id);
-        $subKriteria->kriteria_id = $subKriteria->kriteria_id;
-        $subKriteria->deskripsi = $subKriteria->deskripsi;
-        $subKriteria->nilai = $subKriteria->nilai;
-        $subKriteria->save();
+        $data = SubKriteria::find($subKriteria);
+        $validated = $request->validate([
+            'kriteria_id' => ['required', 'integer'],
+            'nilai' => ['required', 'integer'],
+            'deskripsi' => ['required', 'string']
+        ]);
 
+        $data->update($validated);
+        
         return to_route('subkriterias.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SubKriteria $subKriteria)
+    public function destroy($subKriteria)
     {
-        $data = SubKriteria::findOrFail($subKriteria->id);
+        $data = SubKriteria::findOrFail($subKriteria);
         $data->delete();
     }
 }

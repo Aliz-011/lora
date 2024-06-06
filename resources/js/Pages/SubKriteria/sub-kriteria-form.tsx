@@ -35,7 +35,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 type Props = {
     id?: number;
-    defaultValues?: SubKriteria;
+    defaultValues?: FormValues;
     options: {
         value: number;
         label: string;

@@ -13,7 +13,10 @@ const Home = ({
     auth,
     alternatifs,
     create_url,
-}: PageProps<{ alternatifs: Alternatif[]; create_url: string }>) => {
+}: PageProps<{
+    alternatifs: Alternatif[];
+    create_url: string;
+}>) => {
     return (
         <AuthenticatedLayout user={auth.user}>
             <Head>
@@ -37,7 +40,6 @@ const Home = ({
                             columns={columns}
                             filterKey="nama"
                         />
-                        <div>Home</div>
                     </CardContent>
                 </Card>
             </div>

@@ -3,9 +3,24 @@ import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 
-import { PageProps } from "@/types";
+import { Alternatif, Kriteria, PageProps, SubKriteria } from "@/types";
+import PenilaianForm from "./penilaian-form";
 
-const Create = ({ auth }: PageProps) => {
+const Create = ({
+    auth,
+    alternatifs,
+    subkriterias,
+    kriterias,
+}: PageProps<{
+    alternatifs: Alternatif[];
+    subkriterias: (SubKriteria & { kriteria: Kriteria })[];
+    kriterias: Kriteria[];
+}>) => {
+    const formattedAlternatifs = alternatifs.map((alternatif) => ({
+        value: alternatif.id,
+        label: alternatif.nama,
+    }));
+
     return (
         <AuthenticatedLayout>
             <Head>
@@ -17,7 +32,13 @@ const Create = ({ auth }: PageProps) => {
                     <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
                         <CardTitle>New penilaian page</CardTitle>
                     </CardHeader>
-                    <CardContent>{/* <KriteriaForm /> */}</CardContent>
+                    <CardContent>
+                        <PenilaianForm
+                            alternatifOptions={formattedAlternatifs}
+                            kriterias={kriterias}
+                            subkriterias={subkriterias}
+                        />
+                    </CardContent>
                 </Card>
             </div>
         </AuthenticatedLayout>

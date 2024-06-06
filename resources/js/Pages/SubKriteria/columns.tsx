@@ -70,9 +70,9 @@ export const columns: ColumnDef<ResponseType>[] = [
         ),
     },
     {
-        accessorKey: "bobot",
-        header: "Bobot",
-        cell: ({ row }) => <div>{row.original.kriteria.bobot}</div>,
+        accessorKey: "nilai",
+        header: "Nilai",
+        cell: ({ row }) => <div>{row.original.nilai}</div>,
     },
     {
         id: "actions",

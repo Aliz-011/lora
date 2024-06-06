@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use App\Models\Alternatif;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,6 +14,7 @@ class AlternatifController extends Controller
      */
     public function index()
     {
+
         return Inertia::render('Alternatif/Home', [
             'alternatifs' => Alternatif::all()->map(function ($alternatif) {
                 return [
@@ -21,8 +23,7 @@ class AlternatifController extends Controller
                     'edit_url' => route('alternatifs.edit', $alternatif)
                 ];
             }),
-            'create_url' => route('alternatifs.create'),
-        ]);
+            'create_url' => route('alternatifs.create'),]);
     }
 
     /**

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('alternatif_id')->constrained();
             $table->foreignId('kriteria_id')->constrained();
-            $table->integer('nilai');
+            $table->foreignId('nilai')->references('id')->on('sub_kriterias');
             $table->timestamps();
         });
     }

@@ -16,6 +16,10 @@ class Penilaian extends Model
         return $this->belongsTo(Alternatif::class);
     }
 
+    public function editUrl($id) {
+        return Penilaian::where('alternatif_id', $id)->get();
+    }
+
     public function kriteria() {
         return $this->belongsTo(Kriteria::class);
     }
