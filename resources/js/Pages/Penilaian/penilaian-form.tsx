@@ -33,11 +33,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 type Props = {
     id?: number;
-    defaultValues?: {
-        alternatif_id: number;
-        nilai: number;
-        kriteria_id: number[];
-    };
+    defaultValues?: Penilaian;
     alternatifOptions: {
         value: number;
         label: string;
@@ -68,7 +64,7 @@ const PenilaianForm = ({
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            alternatif_id: 0,
+            alternatif_id: defaultValues ? defaultValues.alternatif_id : 0,
             nilai: new Array(kriterias.length).fill(0),
             kriteria_id: kriterias.map((kriteria) => kriteria.id),
         },

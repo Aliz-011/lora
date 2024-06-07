@@ -91,10 +91,21 @@ class PenilaianController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Penilaian $penilaian)
+    public function edit($penilaian)
     {
+        $data = Penilaian::findOrFail($penilaian);
         return Inertia::render('Penilaian/Edit', [
-            'penilaian' => $penilaian
+            'penilaian' => $data,
+            'alternatifs' => Alternatif::all(),
+            'subkriterias' => SubKriteria::all()->map(function ($subKriteria){
+                return [
+                    'id' => $subKriteria->id,
+                    'deskripsi' => $subKriteria->deskripsi,
+                    'nilai' => $subKriteria->nilai,
+                    'kriteria' => $subKriteria->kriteria,
+                ];
+            }),
+            'kriterias' => Kriteria::all()
         ]);
     }
 
