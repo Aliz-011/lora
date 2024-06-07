@@ -101,15 +101,11 @@ class PenilaianController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Penilaian $penilaian)
+    public function update($penilaian)
     {
-        Penilaian::findOrFail($penilaian->id);
-        $penilaian->alternatif_id = $request->alternatif_id;
-        $penilaian->kriteria_id = $request->kriteria_id;
-        $penilaian->nilai = $request->nilai;
-
-        $penilaian->save();
-        return to_route('penilaians.index');
+        $data = Penilaian::findOrFail($penilaian);
+        $data->save();
+        return to_route('penilaians.index')->with('success', 'Penilaian updated!');
     }
 
     /**
