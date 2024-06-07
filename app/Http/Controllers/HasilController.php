@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hasil;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class HasilController extends Controller
 {
@@ -12,7 +13,7 @@ class HasilController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Hasil/Home');
     }
 
     /**
