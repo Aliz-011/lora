@@ -23,7 +23,8 @@ class AlternatifController extends Controller
                     'edit_url' => route('alternatifs.edit', $alternatif)
                 ];
             }),
-            'create_url' => route('alternatifs.create'),]);
+            'create_url' => route('alternatifs.create'),
+        ]);
     }
 
     /**
@@ -45,7 +46,7 @@ class AlternatifController extends Controller
 
         Alternatif::create($validated);
 
-        return to_route('alternatifs.index');
+        return redirect()->route('alternatifs')->with('success', 'Alternatif created successfully!');
     }
 
     /**
