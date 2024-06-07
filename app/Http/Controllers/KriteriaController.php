@@ -60,9 +60,12 @@ class KriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kriteria $kriteria)
+    public function edit($kriteria)
     {
-        return Inertia::render('Kriteria/Edit');
+        $data = Kriteria::findOrFail($kriteria);
+        return Inertia::render('Kriteria/Edit', [
+            'kriteria' => $data
+        ]);
     }
 
     /**

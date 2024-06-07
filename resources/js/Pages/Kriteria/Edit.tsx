@@ -9,28 +9,8 @@ import KriteriaForm from "./kriteria-form";
 
 import { Kriteria, PageProps } from "@/types";
 
-const Edit = ({ auth, ziggy }: PageProps) => {
+const Edit = ({ kriteria }: PageProps<{ kriteria: Kriteria }>) => {
     const isMounted = useIsMounted();
-
-    const [kriteria, setKriteria] = useState<Kriteria | undefined>(undefined);
-    const id = useMemo(() => {
-        const splitUrl = ziggy.location.split("/")[4];
-        return parseInt(splitUrl, 10);
-    }, [ziggy.location]);
-
-    const getKriteria = useCallback(async () => {
-        const res = await axios.get(`/api/kriterias/${id}`);
-        const data = res.data;
-        if (res.status === 200) {
-            setKriteria(data);
-        }
-    }, [id]);
-
-    useEffect(() => {
-        if (id) {
-            getKriteria();
-        }
-    }, [id, getKriteria]);
 
     if (!isMounted) return null;
 
@@ -48,7 +28,10 @@ const Edit = ({ auth, ziggy }: PageProps) => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <KriteriaForm id={id} defaultValues={kriteria} />
+                        <KriteriaForm
+                            id={kriteria.id}
+                            defaultValues={kriteria}
+                        />
                     </CardContent>
                 </Card>
             </div>

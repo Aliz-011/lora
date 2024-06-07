@@ -60,9 +60,12 @@ class AlternatifController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Alternatif $alternatif)
+    public function edit($alternatif)
     {
-        return Inertia::render('Alternatif/Edit');
+        $data = Alternatif::findOrFail($alternatif);
+        return Inertia::render('Alternatif/Edit', [
+            'alternatif' => $data
+        ]);
     }
 
     /**

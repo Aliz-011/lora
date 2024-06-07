@@ -15,7 +15,6 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function (Request $request) {
-
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -23,7 +22,7 @@ Route::get('/', function (Request $request) {
 });
 
 Route::group(['middleware' => ['auth', 'role:superadmin|admin']], function () {
-    Route::get('/dashboard', function (Request $request) {
+    Route::get('/dashboard', function () {
             $id = Auth::id();
             $user = User::findOrFail($id);
             $user->load(['roles', 'permissions']);  

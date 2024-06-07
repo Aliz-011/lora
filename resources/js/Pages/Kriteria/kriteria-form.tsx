@@ -62,13 +62,11 @@ const KriteriaForm = ({ defaultValues, id }: Props) => {
             if (!!id) {
                 router.patch(`/kriterias/${id}`, { ...values }),
                     {
-                        onSuccess: () => toast.success("Kriteria updated!"),
                         forceFormData: true,
                     };
             } else {
                 router.post("/kriterias", { ...values }),
                     {
-                        onSuccess: () => toast.success("Kriteria created!"),
                         forceFormData: true,
                     };
             }
