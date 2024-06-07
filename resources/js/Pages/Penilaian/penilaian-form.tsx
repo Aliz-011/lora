@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { router } from "@inertiajs/react";
+import { router, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 
@@ -46,6 +46,14 @@ type Props = {
     kriterias: Kriteria[];
 };
 
+type PageProps = {
+    flash?: {
+        success?: string;
+        error?: string;
+    };
+    errors?: Record<string, string>;
+};
+
 const PenilaianForm = ({
     defaultValues,
     id,
@@ -55,6 +63,7 @@ const PenilaianForm = ({
 }: Props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
+    const { flash, errors } = usePage<PageProps>().props;
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -83,6 +92,24 @@ const PenilaianForm = ({
     useEffect(() => {
         setIsMounted(true);
     }, []);
+
+    useEffect(() => {
+        if (flash?.success) {
+            toast.success(flash.success);
+        } else if (flash?.error) {
+            toast.error(flash.error);
+        }
+    }, [flash]);
+
+    useEffect(() => {
+        if (errors) {
+            for (const key in errors) {
+                if (errors.hasOwnProperty(key)) {
+                    toast.error(errors[key]);
+                }
+            }
+        }
+    }, [errors]);
 
     return (
         isMounted && (

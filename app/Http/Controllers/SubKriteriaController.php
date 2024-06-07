@@ -51,7 +51,7 @@ class SubKriteriaController extends Controller
 
         SubKriteria::create($validated);
 
-        return to_route('subkriterias.index');
+        return to_route('subkriterias.index')->with('success', 'Subkriteria created!');
     }
 
     /**
@@ -88,7 +88,7 @@ class SubKriteriaController extends Controller
 
         $data->update($validated);
         
-        return to_route('subkriterias.index');
+        return to_route('subkriterias.index')->with('success', 'Subkriteria updated!');
     }
 
     /**

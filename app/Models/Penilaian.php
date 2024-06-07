@@ -23,4 +23,10 @@ class Penilaian extends Model
     public function kriteria() {
         return $this->belongsTo(Kriteria::class);
     }
+
+    public function data_nilai($id_alternatif, $id_kriteria) {
+        return $this->where('alternatif_id', $id_alternatif)
+            ->where('kriteria_id', $id_kriteria)
+            ->first();
+    }
 }

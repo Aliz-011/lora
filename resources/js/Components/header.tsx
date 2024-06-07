@@ -70,7 +70,7 @@ const Header = () => {
                     </div>
                     <div className="flex items-center gap-x-4">
                         <Dialog>
-                            <DialogTrigger>
+                            <DialogTrigger asChild>
                                 <Button
                                     variant="link"
                                     size="icon"

@@ -46,7 +46,7 @@ class KriteriaController extends Controller
 
         Kriteria::create($validated);
 
-        return to_route('kriterias.index');
+        return to_route('kriterias.index')->with('success', 'Kriteria created');
     }
 
     /**
@@ -68,16 +68,12 @@ class KriteriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kriteria $kriteria)
+    public function update($kriteria)
     {
-        Kriteria::find($kriteria);
-        $kriteria->keterangan = $request->keterangan;
-        $kriteria->kode_kriteria = $request->kode_kriteria;
-        $kriteria->jenis = $request->jenis;
-        $kriteria->bobot = $request->bobot;
-        $kriteria->save();
+        $data = Kriteria::find($kriteria);
+        $data->save();
 
-        return to_route('kriterias.index');
+        return to_route('kriterias.index')->with('success', 'Kriteria updated!');
     }
 
     /**

@@ -72,26 +72,10 @@ const AlternatifForm = ({ defaultValues, id }: Props) => {
         setIsLoading(true);
         if (id) {
             router.patch(`/alternatifs/${id}`, values, {
-                onSuccess: () => {
-                    toast.success("Alternatif updated!");
-                    setIsLoading(false);
-                },
-                onError: () => {
-                    toast.error("Something went wrong");
-                    setIsLoading(false);
-                },
                 forceFormData: true,
             });
         } else {
             router.post("/alternatifs", values, {
-                onSuccess: () => {
-                    toast.success("Alternatif created!");
-                    setIsLoading(false);
-                },
-                onError: () => {
-                    toast.error("Something went wrong");
-                    setIsLoading(false);
-                },
                 forceFormData: true,
             });
         }
@@ -129,4 +113,3 @@ const AlternatifForm = ({ defaultValues, id }: Props) => {
 };
 
 export default AlternatifForm;
-

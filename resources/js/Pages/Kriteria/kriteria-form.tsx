@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { router } from "@inertiajs/react";
+import { router, usePage } from "@inertiajs/react";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Input } from "@/Components/ui/input";
 import { Button } from "@/Components/ui/button";
@@ -34,8 +34,17 @@ type Props = {
     defaultValues?: Kriteria;
 };
 
+type PageProps = {
+    flash?: {
+        success?: string;
+        error?: string;
+    };
+    errors?: Record<string, string>;
+};
+
 const KriteriaForm = ({ defaultValues, id }: Props) => {
     const [isLoading, setIsLoading] = useState(false);
+    const { flash, errors } = usePage<PageProps>().props;
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -69,6 +78,24 @@ const KriteriaForm = ({ defaultValues, id }: Props) => {
             setIsLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (flash?.success) {
+            toast.success(flash.success);
+        } else if (flash?.error) {
+            toast.error(flash.error);
+        }
+    }, [flash]);
+
+    useEffect(() => {
+        if (errors) {
+            for (const key in errors) {
+                if (errors.hasOwnProperty(key)) {
+                    toast.error(errors[key]);
+                }
+            }
+        }
+    }, [errors]);
 
     return (
         <Form {...form}>

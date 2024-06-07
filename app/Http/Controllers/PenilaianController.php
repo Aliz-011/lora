@@ -77,7 +77,7 @@ class PenilaianController extends Controller
 
         Penilaian::insert($data);
 
-        return to_route('penilaians.index');
+        return to_route('penilaians.index')->with('success', 'Penilaian created!');
     }
 
     /**
