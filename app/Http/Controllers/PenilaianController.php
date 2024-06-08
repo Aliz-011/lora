@@ -92,7 +92,7 @@ class PenilaianController extends Controller
      */
     public function edit($penilaian)
     {
-        $data = Penilaian::find($penilaian);
+        $data = Penilaian::where('alternatif_id', $penilaian)->first();
         return Inertia::render('Penilaian/Edit', [
             'penilaian' => $data,
             'alternatifs' => Alternatif::all(),

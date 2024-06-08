@@ -1,5 +1,4 @@
 import { Link, router, usePage } from "@inertiajs/react";
-import qs from "query-string";
 import { useMemo } from "react";
 
 import HeaderLogo from "@/Components/header-logo";
@@ -13,20 +12,9 @@ import {
     DropdownMenuTrigger,
 } from "@/Components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/Components/ui/avatar";
-import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-    DialogFooter,
-    DialogTitle,
-    DialogDescription,
-    DialogHeader,
-} from "@/Components/ui/dialog";
 import WelcomeMsg from "@/Components/welcome-msg";
 
 import { PageProps, User } from "@/types";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { Button } from "./ui/button";
 
 type Props = {
     user?: User;
@@ -45,21 +33,6 @@ const Header = () => {
         [user?.name]
     );
 
-    const onClick = () => {
-        const url = qs.stringifyUrl(
-            {
-                url: "/dashboard",
-                query: {
-                    kriteria: "test",
-                    subkriteria: "paku",
-                },
-            },
-            { skipEmptyString: true, skipNull: true }
-        );
-
-        router.visit(url);
-    };
-
     return (
         <header className="bg-gradient-to-b from-blue-700 to-blue-500 px-4 py-8 lg:px-14 pb-36">
             <div className="max-w-screen-2xl mx-auto">
@@ -69,28 +42,6 @@ const Header = () => {
                         <Navigation />
                     </div>
                     <div className="flex items-center gap-x-4">
-                        <Dialog>
-                            <DialogTrigger asChild>
-                                <Button
-                                    variant="link"
-                                    size="icon"
-                                    className="rounded-full"
-                                >
-                                    <MagnifyingGlassIcon className="size-4 text-white" />
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>Ranking</DialogTitle>
-                                </DialogHeader>
-                                <div className="grid gap-4 py-4"></div>
-                                <DialogFooter>
-                                    <Button type="button" onClick={onClick}>
-                                        Cari
-                                    </Button>
-                                </DialogFooter>
-                            </DialogContent>
-                        </Dialog>
                         <DropdownMenu>
                             <DropdownMenuTrigger className="size-8" asChild>
                                 <Avatar className="cursor-pointer">

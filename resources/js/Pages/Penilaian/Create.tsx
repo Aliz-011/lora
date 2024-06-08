@@ -7,7 +7,6 @@ import { Alternatif, Kriteria, PageProps, SubKriteria } from "@/types";
 import PenilaianForm from "./penilaian-form";
 
 const Create = ({
-    auth,
     alternatifs,
     subkriterias,
     kriterias,

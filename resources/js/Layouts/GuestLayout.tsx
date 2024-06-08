@@ -1,11 +1,15 @@
+import { PropsWithChildren } from "react";
+import { Link, router, usePage } from "@inertiajs/react";
+
 import { Button } from "@/Components/ui/button";
+
 import { UseScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
-import { Link } from "@inertiajs/react";
-import { PropsWithChildren } from "react";
+import Search from "@/Components/search";
 
 export default function Guest({ children }: PropsWithChildren) {
     const scroll = UseScrollTop();
+    const { url } = usePage();
 
     return (
         <div className="h-full dark:bg-[#1f1f1f]">
@@ -19,9 +23,13 @@ export default function Guest({ children }: PropsWithChildren) {
                     SMART
                 </Link>
                 <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
-                    <Button variant="link" className="p-0" asChild>
-                        <Link href="/rekomendasi">Rekomendasi</Link>
-                    </Button>
+                    {url === "/rekomendasi" ? (
+                        <Search />
+                    ) : (
+                        <Button variant="link" className="p-0" asChild>
+                            <Link href="/rekomendasi">Rekomendasi</Link>
+                        </Button>
+                    )}
                 </div>
             </div>
 

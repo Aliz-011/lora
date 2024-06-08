@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubKriteriaController;
 use App\Models\Alternatif;
 use App\Models\Hasil;
+use App\Models\Kriteria;
+use App\Models\SubKriteria;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,25 @@ Route::get('/', function (Request $request) {
     ]);
 });
 
+Route::get('/rekomendasi', function () {
+    return Inertia::render('Rekomendasi', [
+        'subkriterias' => SubKriteria::all()->map(function ($subKriteria){
+                return [
+                    'id' => $subKriteria->id,
+                    'deskripsi' => $subKriteria->deskripsi,
+                    'nilai' => $subKriteria->nilai,
+                    'kriteria' => $subKriteria->kriteria,
+                ];
+            }),
+            'kriterias' => Kriteria::all()
+    ]);
+});
+
+Route::get('/perhitungan', function (Request $request) {
+    dd($request);
+    return Inertia::render('Rekomendasi');
+});
+
 Route::group(['middleware' => ['auth', 'role:superadmin|admin']], function () {
     Route::get('/dashboard', function () {
             $id = Auth::id();
@@ -32,10 +53,6 @@ Route::group(['middleware' => ['auth', 'role:superadmin|admin']], function () {
                 'hasils' => Hasil::all()
             ]);
     })->name('dashboard');
-
-    Route::get('/rekomendasi', function () {
-        return Inertia::render('Rekomendasi');
-    });
 
     Route::resource('alternatifs', AlternatifController::class)->except(['show']);
     Route::resource('kriterias', KriteriaController::class)->except(['show']);
