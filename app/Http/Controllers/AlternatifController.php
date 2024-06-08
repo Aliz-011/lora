@@ -46,7 +46,7 @@ class AlternatifController extends Controller
 
         Alternatif::create($validated);
 
-        return redirect()->route('alternatifs')->with('success', 'Alternatif created!');
+        return redirect()->route('alternatifs.index')->with('success', 'Alternatif created!');
     }
 
     /**

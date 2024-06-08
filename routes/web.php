@@ -33,6 +33,10 @@ Route::group(['middleware' => ['auth', 'role:superadmin|admin']], function () {
             ]);
     })->name('dashboard');
 
+    Route::get('/rekomendasi', function () {
+        return Inertia::render('Rekomendasi');
+    });
+
     Route::resource('alternatifs', AlternatifController::class)->except(['show']);
     Route::resource('kriterias', KriteriaController::class)->except(['show']);
     Route::resource('subkriterias', SubKriteriaController::class)->except(['show']);

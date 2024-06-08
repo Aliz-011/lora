@@ -27,7 +27,7 @@ const Home = ({
                 id: alt.id,
                 nama: alt.nama,
                 edit_url: penilaian
-                    ? route("penilaians.edit", penilaian.id)
+                    ? route("penilaians.edit", penilaian.alternatif_id)
                     : "",
             };
         } else {

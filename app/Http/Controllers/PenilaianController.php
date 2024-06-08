@@ -16,7 +16,6 @@ class PenilaianController extends Controller
      */
     public function index()
     {
-        
         return Inertia::render('Penilaian/Home', [
             'penilaians' => Penilaian::all(),
             'alternatifs' => Alternatif::all()->map(function ($alternatif) {
@@ -93,7 +92,7 @@ class PenilaianController extends Controller
      */
     public function edit($penilaian)
     {
-        $data = Penilaian::findOrFail($penilaian);
+        $data = Penilaian::find($penilaian);
         return Inertia::render('Penilaian/Edit', [
             'penilaian' => $data,
             'alternatifs' => Alternatif::all(),
