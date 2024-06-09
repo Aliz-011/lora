@@ -51,7 +51,10 @@ const Rekomendasi = ({
                                     </TableHeader>
                                     <TableBody>
                                         <TableRow>
-                                            <TableCell className="h-24 text-center">
+                                            <TableCell
+                                                colSpan={3}
+                                                className="h-24"
+                                            >
                                                 No results.
                                             </TableCell>
                                         </TableRow>
@@ -97,13 +100,13 @@ const Rekomendasi = ({
                                     {sortedEntries.map(
                                         ([name, value], index) => (
                                             <TableRow key={value}>
-                                                <TableCell className="h-24 text-center">
+                                                <TableCell className="h-24">
                                                     {name}
                                                 </TableCell>
-                                                <TableCell className="h-24 text-center">
+                                                <TableCell className="h-24">
                                                     {value}
                                                 </TableCell>
-                                                <TableCell className="h-24 text-center">
+                                                <TableCell className="h-24">
                                                     {index + 1}
                                                 </TableCell>
                                             </TableRow>

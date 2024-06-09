@@ -23,7 +23,7 @@ export default function Guest({ children }: PropsWithChildren) {
                     SMART
                 </Link>
                 <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
-                    {url === "/rekomendasi" ? (
+                    {url.includes("rekomendasi") ? (
                         <Search />
                     ) : (
                         <Button variant="link" className="p-0" asChild>

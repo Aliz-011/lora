@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function (Request $request) {
+Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
     ]);
 });
 
-Route::get('/rekomendasi', function (Request $request) {
+Route::get('/rekomendasi', function () {
     return Inertia::render('Rekomendasi', [
         'subkriterias' => SubKriteria::all()->map(function ($subKriteria){
                 return [
@@ -39,13 +39,12 @@ Route::get('/rekomendasi', function (Request $request) {
 });
 
 Route::get('/perhitungan', function (Request $request) {
-    
     $penilaian = new Penilaian;
     $alternatifs = Alternatif::all();
     $kriterias = Kriteria::all();
 
-    $queryKriteriaIds = $request->query('kriteria_id');
     $queryAlternatifId = $request->query('alternatif_id');
+    $queryKriteriaIds = $request->query('kriteria_id');
     $queryNilaiValues = $request->query('nilai');
 
     // Create a mapping of alternative IDs to their names
@@ -61,19 +60,18 @@ Route::get('/perhitungan', function (Request $request) {
             $kriteria_id = $kriteria->id;
 
             $data_nilai = $penilaian->data_nilai($alternatif_id, $kriteria_id);
-            if (!empty($data_nilai->nilai)) {
-                $nilai = $data_nilai->nilai;
-            } else {
-                $nilai = 0;
-            }
+            $nilai = !empty($data_nilai->nilai) ? $data_nilai->nilai : 0;
 
             $matriks_x[$kriteria_id][$alternatif_id] = $nilai;
         }
     }
 
-    foreach ($queryKriteriaIds as $index => $kriteria_id) {
-        $nilai = $queryNilaiValues[$index];
-        $matriks_x[$kriteria_id][$queryAlternatifId] = $nilai;
+    foreach ($queryKriteriaIds as $kriteria_id) {
+        foreach ($queryNilaiValues as $value) {
+            $nilai = $queryNilaiValues[$value];
+            $matriks_x[$kriteria_id][$queryAlternatifId] = $nilai;
+            // dd($matriks_x);
+        }
     }
 
     $nilai_u = [];

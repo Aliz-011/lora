@@ -25,8 +25,10 @@ class Penilaian extends Model
     }
 
     public function data_nilai($id_alternatif, $id_kriteria) {
-        return $this->where('alternatif_id', $id_alternatif)
-            ->where('kriteria_id', $id_kriteria)
+        return $this->join('sub_kriterias', 'penilaians.nilai', '=', 'sub_kriterias.id')
+            ->select("sub_kriterias.nilai as nilai", "penilaians.id as id", "penilaians.kriteria_id as kriteria_id", "penilaians.alternatif_id as alternatif_id")
+            ->where('penilaians.alternatif_id', '=', $id_alternatif)
+            ->where('penilaians.kriteria_id','=', $id_kriteria)
             ->first();
     }
 }

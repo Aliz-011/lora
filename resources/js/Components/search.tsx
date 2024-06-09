@@ -86,14 +86,14 @@ const Search = () => {
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Ranking</DialogTitle>
+                    <DialogTitle>Rekomendasi rumah</DialogTitle>
                 </DialogHeader>
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(handleSubmit)}
                         className="space-y-4"
                     >
-                        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                             {kriterias.map((kriteria, index) => {
                                 const subKriteriaOptions = subkriterias.filter(
                                     (item) => item.kriteria.id === kriteria.id
@@ -108,6 +108,7 @@ const Search = () => {
                                             )}
                                             hidden
                                         />
+
                                         <FormField
                                             name={`nilai.${index}`}
                                             control={form.control}
@@ -135,7 +136,7 @@ const Search = () => {
                                                                         key={
                                                                             item.id
                                                                         }
-                                                                        value={item.id.toString()}
+                                                                        value={item.nilai.toString()}
                                                                     >
                                                                         {
                                                                             item.deskripsi
