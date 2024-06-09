@@ -10,7 +10,6 @@ class Hasil extends Model
     use HasFactory;
 
     protected $fillable = ['alternatif_id', 'nilai'];
-    protected $with = [];
 
     public function alternatifs() {
         return $this->hasMany(Alternatif::class);

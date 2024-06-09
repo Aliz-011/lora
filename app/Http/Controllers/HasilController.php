@@ -17,7 +17,7 @@ class HasilController extends Controller
     public function index()
     {
         $penilaian = new Penilaian;
-        $alternatifs = Alternatif::all();
+        $alternatifs = Alternatif::where('nama', '!=', 'Custom')->get();
         $kriterias = Kriteria::all();
 
         // Create a mapping of alternative IDs to their names
