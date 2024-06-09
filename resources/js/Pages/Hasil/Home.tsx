@@ -19,6 +19,7 @@ const Home = ({ nilai_akhir }: PageProps<{ nilai_akhir: NilaiAkhir }>) => {
     const sortedEntries = Object.entries(nilai_akhir).sort(
         ([, valueA], [, valueB]) => valueB - valueA
     );
+
     return (
         <Authenticated>
             <Head>

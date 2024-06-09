@@ -58,7 +58,7 @@ const Search = () => {
 
         const queryParams = {
             alternatif_id,
-            kriteria: kriteria_id,
+            kriteria_id,
             nilai,
         };
 
@@ -73,9 +73,6 @@ const Search = () => {
                 arrayFormat: "index",
             }
         );
-
-        console.log(queryParams);
-        console.log(url);
 
         router.visit(url);
     };

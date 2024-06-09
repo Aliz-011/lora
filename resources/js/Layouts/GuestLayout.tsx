@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { Link, router, usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 import { Button } from "@/Components/ui/button";
 
