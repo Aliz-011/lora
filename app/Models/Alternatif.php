@@ -9,7 +9,7 @@ class Alternatif extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama', 'keterangan', 'img'];
 
     public function hasil(){
         return $this->belongsTo(Hasil::class);

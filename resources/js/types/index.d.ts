@@ -12,6 +12,8 @@ export interface User {
 export type Alternatif = {
     id: number;
     nama: string;
+    keterangan?: string;
+    img?: string;
     edit_url: string;
 };
 

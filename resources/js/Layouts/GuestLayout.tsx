@@ -38,19 +38,6 @@ export default function Guest({ children }: PropsWithChildren) {
                     <div className="flex flex-col items-center justify-center md:justify-start text-center gap-y-8 lg:gap-y-16 flex-1 px-6 pb-10">
                         {children}
                     </div>
-
-                    {/* footer */}
-                    <div className="flex items-center w-full p-6 bg-background z-50 dark:bg-[#1f1f1f] mt-auto">
-                        <h1 className="font-bold text-2xl">SMART</h1>
-                        <div className="md:ml-auto w-full justify-between md:justify-end flex items-center gap-x-2 text-muted-foreground">
-                            <Button variant="ghost" size="sm">
-                                Privacy Policy
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                                Terms & conditions
-                            </Button>
-                        </div>
-                    </div>
                 </div>
             </main>
         </div>

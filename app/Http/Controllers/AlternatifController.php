@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 use App\Models\Alternatif;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,12 +14,13 @@ class AlternatifController extends Controller
      */
     public function index()
     {
-
         return Inertia::render('Alternatif/Home', [
             'alternatifs' => Alternatif::all()->map(function ($alternatif) {
                 return [
                     'id' => $alternatif->id,
                     'nama' => $alternatif->nama,
+                    'keterangan' => $alternatif->keterangan,
+                    'img' => $alternatif->img,
                     'edit_url' => route('alternatifs.edit', $alternatif)
                 ];
             }),
@@ -41,8 +42,15 @@ class AlternatifController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama' => ['required', 'string', 'min:1', 'unique:alternatifs']
+            'nama' => ['required', 'string', 'min:1', 'unique:alternatifs'],
+            'keterangan' => ['string', 'nullable'],
+            'img' => ['image'],
         ]);
+        
+        $image = $validated['img'] ?? null;
+        if ($image) {
+            $validated['img'] = $image->store('alternatif/' . Str::random(), 'public');
+        }
 
         Alternatif::create($validated);
 
@@ -71,12 +79,10 @@ class AlternatifController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Alternatif $alternatif)
+    public function update($alternatif)
     {
-        Alternatif::updateOrCreate(
-            ['nama' => $alternatif->nama],
-            ['nama' => $request->nama]
-        );
+        $data = Alternatif::findOrFail($alternatif);
+        $data->save();
 
         return to_route('alternatifs.index')->with('success', 'Alternatif updated!');
     }

@@ -45,8 +45,8 @@ export default function Welcome({ auth }: PageProps) {
                                         <img
                                             src={item.image}
                                             alt="blog thumbnail"
-                                            height="1000"
-                                            width="1000"
+                                            height="700"
+                                            width="700"
                                             className="rounded-lg mb-10 object-cover"
                                         />
                                     )}
@@ -96,7 +96,7 @@ const dummyContent = [
             </>
         ),
         badge: "Rumah",
-        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://a0.muscache.com/im/pictures/hosting/Hosting-1103172353057961733/original/dd2e63d3-8357-47b9-9f2b-3144e17b6f83.jpeg?im_w=720",
     },
     {
         title: "Perumahan Megapura Koya Residence",
@@ -121,7 +121,26 @@ const dummyContent = [
             </>
         ),
         badge: "Changelog",
-        image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://a0.muscache.com/im/pictures/miso/Hosting-1011233640536374070/original/39f87fa3-ec7c-4fbc-9a07-46483e3fc76b.jpeg?im_w=720",
+    },
+    {
+        title: "Perumahan Megapura Skyline",
+        description: (
+            <>
+                <p>
+                    Ex irure dolore veniam ex velit non aute nisi labore ipsum
+                    occaecat deserunt cupidatat aute. Enim cillum dolor et nulla
+                    sunt exercitation non voluptate qui aliquip esse tempor.
+                    Ullamco ut sunt consectetur sint qui qui do do qui do.
+                    Labore laborum culpa magna reprehenderit ea velit id esse
+                    adipisicing deserunt amet dolore. Ipsum occaecat veniam
+                    commodo proident aliqua id ad deserunt dolor aliquip duis
+                    veniam sunt.
+                </p>
+            </>
+        ),
+        badge: "Launch Week",
+        image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=3506&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
         title: "Perumahan Vidi Regency 1 (Dok 7)",
@@ -140,6 +159,25 @@ const dummyContent = [
             </>
         ),
         badge: "Launch Week",
-        image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=3506&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://a0.muscache.com/im/pictures/miso/Hosting-896669046266545795/original/e6d39c58-f58b-499e-8e0b-5539fe5d43ea.jpeg?im_w=720",
+    },
+    {
+        title: "Perumahan Grand Vidi Lestari (Holtekamp)",
+        description: (
+            <>
+                <p>
+                    Ex irure dolore veniam ex velit non aute nisi labore ipsum
+                    occaecat deserunt cupidatat aute. Enim cillum dolor et nulla
+                    sunt exercitation non voluptate qui aliquip esse tempor.
+                    Ullamco ut sunt consectetur sint qui qui do do qui do.
+                    Labore laborum culpa magna reprehenderit ea velit id esse
+                    adipisicing deserunt amet dolore. Ipsum occaecat veniam
+                    commodo proident aliqua id ad deserunt dolor aliquip duis
+                    veniam sunt.
+                </p>
+            </>
+        ),
+        badge: "Launch Week",
+        image: "https://a0.muscache.com/im/pictures/ec593870-4efa-4a82-866b-fd988f783baa.jpg?im_w=720",
     },
 ];
