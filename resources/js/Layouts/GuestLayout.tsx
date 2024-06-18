@@ -33,8 +33,8 @@ export default function Guest({ children }: PropsWithChildren) {
                 </div>
             </div>
 
-            <main className="h-full pt-40">
-                <div className="min-h-full flex flex-col dark:bg-[#1F1F1F]">
+            <main className="min-h-full pt-40">
+                <div className="h-full flex flex-col dark:bg-[#1F1F1F]">
                     <div className="flex flex-col items-center justify-center md:justify-start text-center gap-y-8 lg:gap-y-16 flex-1 px-6 pb-10">
                         {children}
                     </div>
